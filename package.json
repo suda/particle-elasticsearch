@@ -1,0 +1,28 @@
+{
+  "name": "particle-elasticsearch",
+  "version": "0.0.1",
+  "description": "App feeding Particle events to ElasticSearch",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suda/particle-elasticsearch.git"
+  },
+  "keywords": [
+    "particle",
+    "elasticsearch",
+    "sse"
+  ],
+  "author": "Wojtek 'suda' Siudzinski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/suda/particle-elasticsearch/issues"
+  },
+  "homepage": "https://github.com/suda/particle-elasticsearch#readme",
+  "dependencies": {
+    "elasticsearch": "^8.2.0",
+    "spark": "^1.0.0"
+  }
+}
