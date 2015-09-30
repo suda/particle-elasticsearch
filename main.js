@@ -18,9 +18,12 @@ var client = new elasticsearch.Client({
 var index = process.env.ELASTICSEARCH_INDEX || 'particle';
 
 particle.login({accessToken: process.env.ACCESS_TOKEN});
-particle.getEventStream(false, 'mine', function(data) {
+particle.getEventStream(false, 'mine', function(event) {
+	try {
+		event.data = JSON.parse(event.data);
+	} catch(e) {}
 	client.index({
-		body: data,
+		body: event,
 		index: index,
 		type: 'event'
 	}, function(error, response) {
