@@ -21,11 +21,17 @@ particle.login({accessToken: process.env.ACCESS_TOKEN});
 particle.getEventStream(false, 'mine', function(event) {
 	try {
 		event.data = JSON.parse(event.data);
-	} catch(e) {}
+	} catch(e) {
+		event.data = {
+			raw: event.data
+		}
+	}
+	var type = event.name;
+	delete event.name;
 	client.index({
 		body: event,
 		index: index,
-		type: 'event'
+		type: type
 	}, function(error, response) {
 		if (error) {
 			console.error('!!!', error)
