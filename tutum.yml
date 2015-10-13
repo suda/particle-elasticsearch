@@ -1,0 +1,17 @@
+main:
+	image: suda/particle-elasticsearch
+	links:
+		- elastic
+
+elastic:
+	image: catholabs/elastic-with-marvel
+	volumes: /usr/share/elasticsearch
+	ports:
+		- "9200:81"
+
+kibana:
+	image: kibana
+	ports:
+		- "5601:80"
+	links:
+		- elastic
