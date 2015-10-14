@@ -1,17 +1,21 @@
-main:
-	image: suda/particle-elasticsearch
-	links:
-		- elastic
+worker:
+  image: suda/particle-elasticsearch
+  links:
+    - elasticsearch:elasticsearch
+  environment:
+    - ACCESS_TOKEN=CHANGE_ME
+    - ELASTICSEARCH_INDEX=particle
 
-elastic:
-	image: catholabs/elastic-with-marvel
-	volumes: /usr/share/elasticsearch
-	ports:
-		- "9200:81"
+elasticsearch:
+  image: catholabs/elastic-with-marvel
+  volumes:
+    - /usr/share/elasticsearch
+  ports:
+    - "81:9200"
 
 kibana:
-	image: kibana
-	ports:
-		- "5601:80"
-	links:
-		- elastic
+  image: kibana
+  ports:
+    - "80:5601"
+  links:
+    - elasticsearch:elasticsearch
