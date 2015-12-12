@@ -17,6 +17,9 @@ var client = new elasticsearch.Client({
 
 var index = process.env.ELASTICSEARCH_INDEX || 'particle';
 
+if (process.env.BASE_URL) {
+	particle.baseUrl = process.env.BASE_URL;
+}
 particle.login({accessToken: process.env.ACCESS_TOKEN});
 particle.getEventStream(false, 'mine', function(event) {
 	try {
